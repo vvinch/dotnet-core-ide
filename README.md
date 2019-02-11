@@ -8,7 +8,7 @@
 
 ```bash
 docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix \
-                    -v sources_folder:/dotnet
+                    -v sources_folder:/dotnet \
                     vvinch/dotnet-core-ide
 ```
 
