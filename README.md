@@ -9,6 +9,7 @@
 ```bash
 docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix \
                     -v sources_folder:/dotnet \
+                    -v extensions_folder:/extensions \
                     vvinch/dotnet-core-ide
 ```
 
@@ -21,6 +22,10 @@ docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix \
 - /dotnet
 
    This folder is the root path for .NET projects. This should be mapped to an external volume containing the sources in order to backing up the data and the build results.
+
+- /extensions
+
+   This folder will be initialized with the Visual Studio Code extensions at startup. If the volume already contains data, it will be preserved. It this volume is mapped, it prevents from loosing extensions updates after each session.
 
 ### Environment
 

@@ -1,7 +1,10 @@
 FROM microsoft/dotnet:sdk
 
 # Install required packages
-RUN apt-get update && apt-get install -y wget libunwind8 libxkbfile1 libsecret-1-0 libnotify4 libgconf-2-4 libnss3 libgtk2.0-0 libxss1 libgconf-2-4 libasound2 libxtst6 libcanberra-gtk-dev libgl1-mesa-glx libgl1-mesa-dri
+RUN apt-get update && apt-get install -y wget libunwind8 libxkbfile1 libsecret-1-0 libnotify4 \
+    libgconf-2-4 libnss3 libgtk2.0-0 libxss1 libgconf-2-4 libasound2 libxtst6 \
+    libcanberra-gtk-dev libgl1-mesa-glx libgl1-mesa-dri \
+    chromium xdg-utils rsync
 
 # Install visual studio code
 RUN wget https://go.microsoft.com/fwlink/?LinkID=760868 -O vscode.deb && \
@@ -9,14 +12,23 @@ RUN wget https://go.microsoft.com/fwlink/?LinkID=760868 -O vscode.deb && \
     rm vscode.deb && \
     rm -rf /var/lib/apt/lists/*
 
+# Prepare volume for extensions
+RUN mkdir /initial-extensions
+VOLUME /extensions
+
+# copy startup script
+COPY launch.sh /launch.sh
+RUN chmod +x /launch.sh
+
+# Create vscode user
 RUN useradd -m vscode -s /bin/bash
 WORKDIR /dotnet
 USER vscode
 
 # Install .NET Core plugins pack
-RUN code --install-extension salbert.awesome-dotnetcore-pack
+RUN code --extensions-dir /initial-extensions --install-extension salbert.awesome-dotnetcore-pack
 
 # Environment variables
 ENV DISPLAY=:0.0
 
-CMD [ "code", "--verbose", "--disable-gpu", "-n", "." ]
+CMD [ "./launch.sh" ]
