@@ -23,6 +23,11 @@ RUN chmod +x /launch.sh
 # Create vscode user
 RUN useradd -m vscode -s /bin/bash
 WORKDIR /dotnet
+
+RUN chown vscode /extensions
+RUN chown vscode /initial-extensions
+
+
 USER vscode
 
 # Install .NET Core plugins pack
