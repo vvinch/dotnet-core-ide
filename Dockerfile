@@ -35,5 +35,6 @@ RUN code --extensions-dir /initial-extensions --install-extension salbert.awesom
 
 # Environment variables
 ENV DISPLAY=:0.0
+ENV VS_OPTIONS=""
 
-CMD [ "./launch.sh" ]
+CMD [ "/launch.sh" ]
