@@ -4,4 +4,4 @@
 rsync -ar /initial-extensions/* /extensions
 
 # Start VSCODE
-code ${VS_OPTIONS} --disable-gpu --extensions-dir /extensions -n .
+code ${VS_OPTIONS}  --verbose --disable-gpu --extensions-dir /extensions -n .
