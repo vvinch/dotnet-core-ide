@@ -1,7 +1,10 @@
 FROM microsoft/dotnet:sdk
 
+# add a source for nodejs
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+
 # Install required packages
-RUN apt-get update && apt-get install -y wget libunwind8 libxkbfile1 libsecret-1-0 libnotify4 \
+RUN apt-get update && apt-get install -y nodejs wget libunwind8 libxkbfile1 libsecret-1-0 libnotify4 \
     libgconf-2-4 libnss3 libgtk2.0-0 libxss1 libgconf-2-4 libasound2 libxtst6 \
     libcanberra-gtk-dev libgl1-mesa-glx libgl1-mesa-dri \
     midori xdg-utils rsync

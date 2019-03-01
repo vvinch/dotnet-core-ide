@@ -2,7 +2,7 @@
 
 ## Description
 
-.NET Core development environment with Visual Studio Code
+.NET Core and Nodejs development environment with Visual Studio Code
 
 ## Usage
 
@@ -25,7 +25,7 @@ docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix \
 
 - /extensions
 
-   This folder will be initialized with the Visual Studio Code extensions at startup. If the volume already contains data, it will be preserved. It this volume is mapped, it prevents from loosing extensions updates after each session.
+   This folder will be initialized with the Visual Studio Code extensions at startup. If the volume already contains data, it will be preserved. If used, this volume prevents from loosing extensions updates after each session.
 
 ### Environment
 
